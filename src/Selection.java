@@ -104,7 +104,7 @@ public class Selection extends Application {
         });
 
         // Configurando o período Plioceno
-        Image plioceneLogo = new Image("file:_logo.png");
+        Image plioceneLogo = new Image("file:pliocene_logo.png");
         ImageView plioceneView = new ImageView(plioceneLogo);
         plioceneView.setFitHeight(100);
         plioceneView.setFitWidth(100);
@@ -132,7 +132,7 @@ public class Selection extends Application {
             }
         });
         
-        String buttonStyle = "-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; "
+        String buttonStyle = "-fx-font-size: 14px; "
                 + "-fx-padding: 5 10; -fx-border-radius: 5; -fx-background-radius: 5;";
         
         // Adicionando o botão de Voltar
