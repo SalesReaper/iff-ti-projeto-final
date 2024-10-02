@@ -31,7 +31,7 @@ public class LoginScreen extends Application {
         passwordField.setStyle("-fx-font-size: 16px;");
 
         Button loginButton = new Button("Login");
-        loginButton.setStyle("-fx-font-size: 16px; -fx-background-color: #007BFF; -fx-text-fill: white; -fx-font-weight: bold;"
+        loginButton.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;"
         			+ "-fx-padding: 5 10; -fx-border-radius: 5; -fx-background-radius: 5;");
         
         // Ação ao clicar no botão de login
