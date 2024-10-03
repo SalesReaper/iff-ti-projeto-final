@@ -8,6 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -101,6 +106,12 @@ public class Earth3D_Pliocene extends Application {
         Image earthImage = new Image("file:earth_pliocene_texture.jpg"); // caminho da textura
         earthMaterial.setDiffuseMap(earthImage);
         earth.setMaterial(earthMaterial);
+        
+        // Configuração da imagem de fundo (espaço)
+        Image backgroundImage = new Image("file:space_background.jpg");
+        BackgroundImage background = new BackgroundImage(backgroundImage,
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
         // Estilizando os botões inferiores
         String buttonStyle = "-fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 5; -fx-background-radius: 5;";
@@ -134,7 +145,7 @@ public class Earth3D_Pliocene extends Application {
         BorderPane root = new BorderPane();
         root.setCenter(earth);
         root.setBottom(buttonBox2);
-        root.setStyle("-fx-background-color: black;");
+        root.setBackground(new Background(background));
         
         // Adicionar o AnchorPane dos botões no topo
         root.setTop(anchorPane);

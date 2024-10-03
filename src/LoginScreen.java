@@ -16,15 +16,15 @@ public class LoginScreen extends Application {
 
     public void start(Stage primaryStage) {
         // Logo do usuário
-        Image userLogo = new Image("file:user_logo.png"); // caminho da sua imagem
+        Image userLogo = new Image("file:user_logo.png"); // caminho da imagem
         ImageView userLogoView = new ImageView(userLogo);
         userLogoView.setFitHeight(100);
         userLogoView.setFitWidth(100);
         
         // Campos de entrada de texto
-        TextField usernameField = new TextField();
-        usernameField.setPromptText("Username");
-        usernameField.setStyle("-fx-font-size: 16px;");
+        TextField emailField = new TextField();
+        emailField.setPromptText("Email");
+        emailField.setStyle("-fx-font-size: 16px;");
 
         PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Password");
@@ -36,11 +36,11 @@ public class LoginScreen extends Application {
         
         // Ação ao clicar no botão de login
         loginButton.setOnAction(event -> {
-            String username = usernameField.getText();
+            String email = emailField.getText();
             String password = passwordField.getText();
 
             // Validação simples
-            if ("admin".equals(username) && "1234".equals(password)) {
+            if ("admin@gmail.com".equals(email) && "1234".equals(password)) {
                 // Navegar para a interface de seleção
                 Selection selection = new Selection();
                 try {
@@ -49,13 +49,13 @@ public class LoginScreen extends Application {
                     s.printStackTrace();
                 }
             } else {
-            	JOptionPane.showInternalMessageDialog(null, "Nome de usuário ou senha incorreta. Tente novamente.");
-                System.out.println("Nome de usuário ou senha incorreta. Tente novamente.");
+            	JOptionPane.showInternalMessageDialog(null, "Email ou senha incorreta. Tente novamente.");
+                System.out.println("Email ou senha incorreta. Tente novamente.");
             }
         });
 
         // Organizando os elementos em um VBox
-        VBox vbox = new VBox(15, userLogoView, usernameField, passwordField, loginButton);
+        VBox vbox = new VBox(15, userLogoView, emailField, passwordField, loginButton);
         vbox.setAlignment(Pos.CENTER);
         vbox.setPadding(new Insets(50));
         vbox.setStyle("-fx-background-color: #f0f0f0;"); // Cor de fundo da tela
