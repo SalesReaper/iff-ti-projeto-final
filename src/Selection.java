@@ -24,14 +24,38 @@ public class Selection extends Application {
         Label ptriassicTitle = new Label("Permo-Triássico");
         ptriassicTitle.setStyle("-fx-font-size: 25px; -fx-text-fill: white; -fx-font-family: Arial; -fx-font-weight: bold;"); // Tamanho da fonte e cor
 
-        Label ptriassicDescription = new Label("blá blá blá");
+        Label ptriassicDescription = new Label
+        		(
+        		""
+        		+ "\n"
+        		+ "\n"
+        		+ "A extinção do Permiano-Triássico"
+        		+ "\n"
+        		+ "ou extinção Permo-Triássica, "
+        		+ "\n"
+        		+ "também conhecida informalmente"
+        		+ "\n"
+        		+ "como Great Dying (em português: Grande Morte), "
+        		+ "\n"
+        		+ "foi uma extinção em massa ocorrida "
+        		+ "\n"
+        		+ "por volta de 252 milhões de anos atrás,"
+        		+ "\n"
+        		+ "determinando a passagem do período "
+        		+ "\n"
+        		+ "Permiano para o Triássico, bem como a "
+        		+ "\n"
+        		+ "fronteira entre as eras Paleozoica "
+        		+ "\n"
+        		+ "e Mesozoica.\""
+        		);
         ptriassicDescription.setStyle("-fx-font-size: 14px; -fx-text-fill: white;"); // Tamanho da fonte e cor
 
         // Organizar a imagem, título e descrição em um VBox
         VBox ptriassicInfo = new VBox(5, ptriassicView, ptriassicTitle, ptriassicDescription);
         ptriassicInfo.setAlignment(Pos.CENTER);  // Alinhar ao centro
 
-        Rectangle ptriassicBackground = new Rectangle(300, 800);
+        Rectangle ptriassicBackground = new Rectangle(330, 800);
         ptriassicBackground.setFill(Color.BLUEVIOLET);
         
         StackPane ptriassicPane = new StackPane(ptriassicBackground, ptriassicInfo);
@@ -60,7 +84,7 @@ public class Selection extends Application {
         VBox jcretaceousInfo = new VBox(5, jcretaceousView, jcretaceousTitle, jcretaceousDescription);
         jcretaceousInfo.setAlignment(Pos.CENTER);
 
-        Rectangle jcretaceousBackground = new Rectangle(300, 800);
+        Rectangle jcretaceousBackground = new Rectangle(330, 800);
         jcretaceousBackground.setFill(Color.DARKBLUE);
 
         StackPane jcretaceousPane = new StackPane(jcretaceousBackground, jcretaceousInfo);
@@ -89,7 +113,7 @@ public class Selection extends Application {
         VBox cenomanianInfo = new VBox(5, cenomanianView, cenomanianTitle, cenomanianDescription);
         cenomanianInfo.setAlignment(Pos.CENTER);
 
-        Rectangle cenomanianBackground = new Rectangle(300, 800);
+        Rectangle cenomanianBackground = new Rectangle(330, 800);
         cenomanianBackground.setFill(Color.DARKKHAKI);
 
         StackPane cenomanianPane = new StackPane(cenomanianBackground, cenomanianInfo);
@@ -118,7 +142,7 @@ public class Selection extends Application {
         VBox plioceneInfo = new VBox(5, plioceneView, plioceneTitle, plioceneDescription);
         plioceneInfo.setAlignment(Pos.CENTER);
 
-        Rectangle plioceneBackground = new Rectangle(300, 800);
+        Rectangle plioceneBackground = new Rectangle(330, 800);
         plioceneBackground.setFill(Color.GREEN);
 
         StackPane pliocenePane = new StackPane(plioceneBackground, plioceneInfo);
@@ -160,15 +184,17 @@ public class Selection extends Application {
         mainLayout.setStyle("-fx-background-color: #000000; -fx-padding: 10;");
 
         // Ajustando o tamanho da tela
-        primaryStage.setWidth(1280);
-        primaryStage.setHeight(720);
+        primaryStage.setWidth(1366);
+        primaryStage.setHeight(768);
 
-        Scene scene = new Scene(mainLayout, 1280, 720);
+        Scene scene = new Scene(mainLayout);
         primaryStage.setTitle("Selecione um Período da Terra");
         primaryStage.setScene(scene);
-
+        
         // Exibe a janela
         primaryStage.show();
+        
+        primaryStage.setMaximized(true); // tela maximizada
     }
 
     public static void main(String[] args) {

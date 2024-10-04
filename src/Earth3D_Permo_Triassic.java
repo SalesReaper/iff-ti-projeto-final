@@ -26,8 +26,8 @@ import javafx.util.Duration;
 
 public class Earth3D_Permo_Triassic extends Application {
 
-    private static final int WIDTH = 1200;
-    private static final int HEIGHT = 700;
+    private static final int WIDTH = 1366;
+    private static final int HEIGHT = 768;
 
     private double mouseX;
     private boolean isAutomaticRotation = false;
@@ -114,7 +114,7 @@ public class Earth3D_Permo_Triassic extends Application {
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
         // Estilizando os botões inferiores
-        String buttonStyle = "-fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 5; -fx-background-radius: 5;";
+        String buttonStyle = "-fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 10; -fx-background-radius: 5;";
         String hoverStyle = "-fx-background-color: #45a049;";
 
         Button backButton = new Button("Voltar");
@@ -157,8 +157,20 @@ public class Earth3D_Permo_Triassic extends Application {
         scene.setCamera(camera);
 
         // Configuração inicial da Terra
-        earth.translateXProperty().set(WIDTH / 30);
-        earth.translateYProperty().set(HEIGHT / 30);
+        earth.translateXProperty().set(WIDTH / -100);
+        earth.translateYProperty().set(HEIGHT / 100);
+        
+     // Controles de zoom com o scroll do mouse
+        scene.setOnScroll(event -> {
+            double zoomFactor = event.getDeltaY() > 0 ? 100 : -100;
+            double newTranslateZ = earth.getTranslateZ() + zoomFactor;
+
+            // Limitar o zoom entre dois valores (ex: -500 e 500)
+            if (newTranslateZ > -500 && newTranslateZ < 100) {
+                earth.translateZProperty().set(newTranslateZ);
+            }
+        });
+
 
         // Inicializa a rotação manual
         yRotate = new Rotate(0, Rotate.Y_AXIS);
@@ -179,9 +191,9 @@ public class Earth3D_Permo_Triassic extends Application {
         // Ação do botão de rotação automática
         autoRotateButton.setOnAction(event -> {
             if (!isAutomaticRotation) {
-                rotateTransition = new RotateTransition(Duration.seconds(30), earth);
+                rotateTransition = new RotateTransition(Duration.seconds(90), earth);
                 rotateTransition.setAxis(Rotate.Y_AXIS);
-                rotateTransition.setByAngle(360);
+                rotateTransition.setByAngle(3600);
                 rotateTransition.setCycleCount(RotateTransition.INDEFINITE);
                 rotateTransition.play();
 
@@ -196,10 +208,12 @@ public class Earth3D_Permo_Triassic extends Application {
                 isAutomaticRotation = false;
             }
         });
-
-        primaryStage.setTitle("Terra 3D");
+        
+        primaryStage.setTitle("Permo-Triássico");
         primaryStage.setScene(scene);
         primaryStage.show();
+        
+        primaryStage.setMaximized(true); // tela maximizada		
     }
 
     public static void main(String[] args) {

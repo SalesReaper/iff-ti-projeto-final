@@ -24,7 +24,17 @@ public class TextScreen extends Application {
         // Cria os títulos e os textos com informações sobre os períodos
         permoTriassicTitle = new Text("Permo-Triássico");
         permoTriassicTitle.setFont(Font.font(20));  // Define o tamanho da fonte do título
-        permoTriassicText = new Text("Informações sobre o período Permo-Triássico...");
+        permoTriassicText = new Text
+        		(
+        		"A extinção do Permiano-Triássico ou extinção Permo-Triássica, também conhecida informalmente como Great Dying (em português: Grande Morte), foi uma extinção em massa ocorrida por volta de 252 milhões de anos atrás, "
+        		+ "\n"
+        		+ "determinando a passagem do período Permiano para o Triássico, bem como a fronteira entre as eras Paleozoica e Mesozoica."
+        		+ "\n"
+        		+ "\n"
+        		+ "Este evento é a extinção em massa de maiores proporções que já ocorreu na Terra, resultando no desaparecimento de 95% das espécies marinhas e 70% das espécies terrestres. Os dados estimam que 57% das famílias e "
+        		+ "\n"
+        		+ "85% dos gêneros foram ceifados. Tornou-se também o único evento de extinção em massa de insetos conhecido. Por causa de seu impacto, foi descrita como a \"mãe de todas as extinções em massa."
+        		);
 
         jurassicCretaceousTitle = new Text("Jurássico-Cretáceo");
         jurassicCretaceousTitle.setFont(Font.font(20));  // Define o tamanho da fonte do título
@@ -60,6 +70,7 @@ public class TextScreen extends Application {
         stage.setTitle("Janela de Textos");
         stage.setScene(scene);
         stage.show();
+        stage.setMaximized(true);; // tela maximizada
     }
 
     // Método para rolar até o texto específico
