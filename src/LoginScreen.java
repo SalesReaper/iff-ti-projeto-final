@@ -22,7 +22,6 @@ import javafx.stage.Stage;
 
 public class LoginScreen extends Application {
 
-    @Override
     public void start(Stage primaryStage) {
         // Logo do usuário
         Image userLogo = new Image("file:user_logo.png"); // caminho da imagem

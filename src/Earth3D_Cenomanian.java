@@ -2,6 +2,7 @@ import javafx.animation.RotateTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Camera;
+import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -141,9 +142,33 @@ public class Earth3D_Cenomanian extends Application {
         HBox buttonBox2 = new HBox(10, autoRotateButton, manualRotateButton, backButton);
         buttonBox2.setStyle("-fx-padding: 10;");
 
+        // Cria textos para os continentes
+        Text africa3D = new Text("África");
+        africa3D.setFill(Color.RED);
+        // Posicionando no espaço 3D em relação à Terra
+        africa3D.setTranslateX(50);
+        africa3D.setTranslateY(90);
+        africa3D.setTranslateZ(-230);
+        // Inclinação para alinhar à superfície
+        africa3D.getTransforms().add(new Rotate(20, Rotate.X_AXIS));
+        africa3D.getTransforms().add(new Rotate(-20, Rotate.Y_AXIS));
+        africa3D.getTransforms().add(new Rotate(8, Rotate.Z_AXIS)); 
+
+        Text america3D = new Text("América");
+        america3D.setFill(Color.RED);
+        // Posicionando no espaço 3D em relação à Terra
+        america3D.setTranslateX(-120);
+        america3D.setTranslateY(10);
+        america3D.setTranslateZ(-200);
+        // Inclinação para alinhar à superfície 
+        america3D.getTransforms().add(new Rotate(20, Rotate.Y_AXIS)); 
+        
+        // Agrupar a Terra e os textos em um único grupo para que os textos sigam a Terra
+        Group earthGroup = new Group(earth, africa3D, america3D);
+        
         // Layout principal usando BorderPane
         BorderPane root = new BorderPane();
-        root.setCenter(earth);
+        root.setCenter(earthGroup);
         root.setBottom(buttonBox2);
         root.setBackground(new Background(background));
         
@@ -157,24 +182,24 @@ public class Earth3D_Cenomanian extends Application {
         scene.setCamera(camera);
 
         // Configuração inicial da Terra
-        earth.translateXProperty().set(WIDTH / -100);
-        earth.translateYProperty().set(HEIGHT / 100);
+        earthGroup.translateXProperty().set(WIDTH / -100);
+        earthGroup.translateYProperty().set(HEIGHT / 100);
         
      // Controles de zoom com o scroll do mouse
         scene.setOnScroll(event -> {
             double zoomFactor = event.getDeltaY() > 0 ? 100 : -100;
-            double newTranslateZ = earth.getTranslateZ() + zoomFactor;
+            double newTranslateZ = earthGroup.getTranslateZ() + zoomFactor;
 
             // Limitar o zoom entre dois valores (ex: -500 e 500)
             if (newTranslateZ > -500 && newTranslateZ < 100) {
-                earth.translateZProperty().set(newTranslateZ);
+                earthGroup.translateZProperty().set(newTranslateZ);
             }
         });
 
 
         // Inicializa a rotação manual
         yRotate = new Rotate(0, Rotate.Y_AXIS);
-        earth.getTransforms().add(yRotate);
+        earthGroup.getTransforms().add(yRotate);
 
         scene.setOnMousePressed((MouseEvent event) -> {
             mouseX = event.getSceneX();
@@ -191,7 +216,7 @@ public class Earth3D_Cenomanian extends Application {
         // Ação do botão de rotação automática
         autoRotateButton.setOnAction(event -> {
             if (!isAutomaticRotation) {
-                rotateTransition = new RotateTransition(Duration.seconds(90), earth);
+                rotateTransition = new RotateTransition(Duration.seconds(90), earthGroup);
                 rotateTransition.setAxis(Rotate.Y_AXIS);
                 rotateTransition.setByAngle(3600);
                 rotateTransition.setCycleCount(RotateTransition.INDEFINITE);
