@@ -1,8 +1,10 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -58,6 +60,21 @@ public class TextScreen extends Application {
 
         scrollPane.setContent(textContainer);
 
+        Button backButton = new Button("Voltar");
+        backButton.setOnAction(event -> {
+            // Volta para a tela anterior
+            Selection selectionScreen = new Selection();
+            try {
+                selectionScreen.start(stage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Caixa de botões inferior
+        HBox buttonBox = new HBox(10, backButton);
+        buttonBox.setStyle("-fx-padding: 10;");
+
         // Layout principal
         AnchorPane root = new AnchorPane(scrollPane);
         AnchorPane.setTopAnchor(scrollPane, 10.0);
@@ -65,12 +82,19 @@ public class TextScreen extends Application {
         AnchorPane.setLeftAnchor(scrollPane, 10.0);
         AnchorPane.setRightAnchor(scrollPane, 10.0);
 
+        // Adiciona a caixa de botões ao layout principal
+        root.getChildren().add(buttonBox);
+
+        // Configura a posição da buttonBox no AnchorPane
+        AnchorPane.setBottomAnchor(buttonBox, 10.0); // Distância do fundo
+        AnchorPane.setLeftAnchor(buttonBox, 10.0);   // Distância da esquerda
+
         // Define a cena e a exibe
-        Scene scene = new Scene(root, 1280, 720); // Tamanho da janela
+        Scene scene = new Scene(root, 1366, 768); // Tamanho da janela
         stage.setTitle("Janela de Textos");
         stage.setScene(scene);
         stage.show();
-        stage.setMaximized(true);; // tela maximizada
+//        stage.setMaximized(true); // tela maximizada
     }
 
     // Método para rolar até o texto específico

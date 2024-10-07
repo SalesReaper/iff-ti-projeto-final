@@ -29,13 +29,13 @@ public class Selection extends Application {
         		""
         		+ "\n"
         		+ "\n"
-        		+ "A extinção do Permiano-Triássico"
+        		+ "A extinção do Permiano-Triássico ou"
         		+ "\n"
-        		+ "ou extinção Permo-Triássica, "
+        		+ "extinção Permo-Triássica, também"
         		+ "\n"
-        		+ "também conhecida informalmente"
+        		+ "conhecida informalmente como"
         		+ "\n"
-        		+ "como Great Dying (em português: Grande Morte), "
+        		+ "Great Dying (em português: Grande Morte), "
         		+ "\n"
         		+ "foi uma extinção em massa ocorrida "
         		+ "\n"
@@ -55,7 +55,7 @@ public class Selection extends Application {
         VBox ptriassicInfo = new VBox(5, ptriassicView, ptriassicTitle, ptriassicDescription);
         ptriassicInfo.setAlignment(Pos.CENTER);  // Alinhar ao centro
 
-        Rectangle ptriassicBackground = new Rectangle(330, 800);
+        Rectangle ptriassicBackground = new Rectangle(320, 800);
         ptriassicBackground.setFill(Color.BLUEVIOLET);
         
         StackPane ptriassicPane = new StackPane(ptriassicBackground, ptriassicInfo);
@@ -84,7 +84,7 @@ public class Selection extends Application {
         VBox jcretaceousInfo = new VBox(5, jcretaceousView, jcretaceousTitle, jcretaceousDescription);
         jcretaceousInfo.setAlignment(Pos.CENTER);
 
-        Rectangle jcretaceousBackground = new Rectangle(330, 800);
+        Rectangle jcretaceousBackground = new Rectangle(320, 800);
         jcretaceousBackground.setFill(Color.DARKBLUE);
 
         StackPane jcretaceousPane = new StackPane(jcretaceousBackground, jcretaceousInfo);
@@ -113,7 +113,7 @@ public class Selection extends Application {
         VBox cenomanianInfo = new VBox(5, cenomanianView, cenomanianTitle, cenomanianDescription);
         cenomanianInfo.setAlignment(Pos.CENTER);
 
-        Rectangle cenomanianBackground = new Rectangle(330, 800);
+        Rectangle cenomanianBackground = new Rectangle(320, 800);
         cenomanianBackground.setFill(Color.DARKKHAKI);
 
         StackPane cenomanianPane = new StackPane(cenomanianBackground, cenomanianInfo);
@@ -142,7 +142,7 @@ public class Selection extends Application {
         VBox plioceneInfo = new VBox(5, plioceneView, plioceneTitle, plioceneDescription);
         plioceneInfo.setAlignment(Pos.CENTER);
 
-        Rectangle plioceneBackground = new Rectangle(330, 800);
+        Rectangle plioceneBackground = new Rectangle(320, 800);
         plioceneBackground.setFill(Color.GREEN);
 
         StackPane pliocenePane = new StackPane(plioceneBackground, plioceneInfo);
@@ -194,7 +194,7 @@ public class Selection extends Application {
         // Exibe a janela
         primaryStage.show();
         
-        primaryStage.setMaximized(true); // tela maximizada
+//        primaryStage.setMaximized(true); // tela maximizada
     }
 
     public static void main(String[] args) {

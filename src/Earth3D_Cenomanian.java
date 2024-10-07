@@ -238,7 +238,7 @@ public class Earth3D_Cenomanian extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         
-        primaryStage.setMaximized(true); // tela maximizada		
+//        primaryStage.setMaximized(true); // tela maximizada		
     }
 
     public static void main(String[] args) {
