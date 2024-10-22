@@ -1,10 +1,9 @@
+package terraanciaapp;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -15,11 +14,11 @@ import javafx.stage.Stage;
 public class Selection extends Application {
 
     public void start(Stage primaryStage) {
-        // Configurando o período Permo-Triássico
-        Image ptriassicLogo = new Image("file:ptriassic_logo.png");
-        ImageView ptriassicView = new ImageView(ptriassicLogo);
-        ptriassicView.setFitHeight(100);
-        ptriassicView.setFitWidth(100);
+        // Configurando o período Permo-Triássico (Caminho da logo e o tamnho)
+//        Image ptriassicLogo = new Image(getClass().getResourceAsStream("/resources/ptriassic_logo.png"));
+//        ImageView ptriassicView = new ImageView(ptriassicLogo);
+//        ptriassicView.setFitHeight(100);
+//        ptriassicView.setFitWidth(100);
 
         Label ptriassicTitle = new Label("Permo-Triássico");
         ptriassicTitle.setStyle("-fx-font-size: 25px; -fx-text-fill: white; -fx-font-family: Arial; -fx-font-weight: bold;"); // Tamanho da fonte e cor
@@ -47,21 +46,20 @@ public class Selection extends Application {
         		+ "\n"
         		+ "fronteira entre as eras Paleozoica "
         		+ "\n"
-        		+ "e Mesozoica.\""
+        		+ "e Mesozoica."
         		);
         ptriassicDescription.setStyle("-fx-font-size: 14px; -fx-text-fill: white;"); // Tamanho da fonte e cor
 
-        // Organizar a imagem, título e descrição em um VBox
-        VBox ptriassicInfo = new VBox(5, ptriassicView, ptriassicTitle, ptriassicDescription);
+        // Organizar a imagem, título e descrição em um VBox (descomentar quando tiver imagem)
+        VBox ptriassicInfo = new VBox(5, /*ptriassicView,*/ ptriassicTitle, ptriassicDescription);
         ptriassicInfo.setAlignment(Pos.CENTER);  // Alinhar ao centro
 
-        Rectangle ptriassicBackground = new Rectangle(320, 800);
+        Rectangle ptriassicBackground = new Rectangle(320, 695);
         ptriassicBackground.setFill(Color.BLUEVIOLET);
         
         StackPane ptriassicPane = new StackPane(ptriassicBackground, ptriassicInfo);
         ptriassicPane.setOnMouseClicked(event -> {
-            System.out.println("Permo-Triássico selecionado");
-            Earth3D_Permo_Triassic earth3D = new Earth3D_Permo_Triassic();
+            Permo_Triassic earth3D = new Permo_Triassic();
             try {
                 earth3D.start(primaryStage);
             } catch (Exception e) {
@@ -69,11 +67,11 @@ public class Selection extends Application {
             }
         });
 
-        // Configurando o período Jurássico-Cretáceo
-        Image jcretaceousLogo = new Image("file:jcretaceous_logo.png");
-        ImageView jcretaceousView = new ImageView(jcretaceousLogo);
-        jcretaceousView.setFitHeight(100);
-        jcretaceousView.setFitWidth(100);
+        // Configurando o período Jurássico-Cretáceo (Caminho da logo e o tamnho)
+//        Image jcretaceousLogo = new Image(getClass().getResourceAsStream("/resources/jcretaceous_logo.png"));
+//        ImageView jcretaceousView = new ImageView(jcretaceousLogo);
+//        jcretaceousView.setFitHeight(100);
+//        jcretaceousView.setFitWidth(100);
 
         Label jcretaceousTitle = new Label("Jurássico-Cretáceo");
         jcretaceousTitle.setStyle("-fx-font-size: 25px; -fx-text-fill: white; -fx-font-family: Arial; -fx-font-weight: bold;");
@@ -81,16 +79,16 @@ public class Selection extends Application {
         Label jcretaceousDescription = new Label("blá blá blá");
         jcretaceousDescription.setStyle("-fx-font-size: 14px; -fx-text-fill: white;");
 
-        VBox jcretaceousInfo = new VBox(5, jcretaceousView, jcretaceousTitle, jcretaceousDescription);
+        // Organizar a imagem, título e descrição em um VBox (descomentar quando tiver imagem)
+        VBox jcretaceousInfo = new VBox(5, /*jcretaceousView,*/ jcretaceousTitle, jcretaceousDescription);
         jcretaceousInfo.setAlignment(Pos.CENTER);
 
-        Rectangle jcretaceousBackground = new Rectangle(320, 800);
+        Rectangle jcretaceousBackground = new Rectangle(320, 695);
         jcretaceousBackground.setFill(Color.DARKBLUE);
 
         StackPane jcretaceousPane = new StackPane(jcretaceousBackground, jcretaceousInfo);
         jcretaceousPane.setOnMouseClicked(event -> {
-            System.out.println("Jurássico-Cretáceo selecionado");
-            Earth3D_Jurassic_Cretaceous earth3D = new Earth3D_Jurassic_Cretaceous();
+            Jurassic_Cretaceous earth3D = new Jurassic_Cretaceous();
             try {
                 earth3D.start(primaryStage);
             } catch (Exception e) {
@@ -98,11 +96,11 @@ public class Selection extends Application {
             }
         });
 
-        // Configurando o período Cenomaniano
-        Image cenomanianLogo = new Image("file:cenomanian_logo.png");
-        ImageView cenomanianView = new ImageView(cenomanianLogo);
-        cenomanianView.setFitHeight(100);
-        cenomanianView.setFitWidth(100);
+        // Configurando o período Cenomaniano (Caminho da logo e o tamnho)
+//        Image cenomanianLogo = new Image(getClass().getResourceAsStream("/resources/cenomanian_logo.png"));
+//        ImageView cenomanianView = new ImageView(cenomanianLogo);
+//        cenomanianView.setFitHeight(100);
+//        cenomanianView.setFitWidth(100);
 
         Label cenomanianTitle = new Label("Cenomaniano");
         cenomanianTitle.setStyle("-fx-font-size: 25px; -fx-text-fill: white; -fx-font-family: Arial; -fx-font-weight: bold;");
@@ -110,16 +108,16 @@ public class Selection extends Application {
         Label cenomanianDescription = new Label("blá blá blá");
         cenomanianDescription.setStyle("-fx-font-size: 14px; -fx-text-fill: white;");
         
-        VBox cenomanianInfo = new VBox(5, cenomanianView, cenomanianTitle, cenomanianDescription);
+        // Organizar a imagem, título e descrição em um VBox (descomentar quando tiver imagem)
+        VBox cenomanianInfo = new VBox(5, /*cenomanianView,*/ cenomanianTitle, cenomanianDescription);
         cenomanianInfo.setAlignment(Pos.CENTER);
 
-        Rectangle cenomanianBackground = new Rectangle(320, 800);
+        Rectangle cenomanianBackground = new Rectangle(320, 695);
         cenomanianBackground.setFill(Color.DARKKHAKI);
 
         StackPane cenomanianPane = new StackPane(cenomanianBackground, cenomanianInfo);
         cenomanianPane.setOnMouseClicked(event -> {
-            System.out.println("Cenomaniano selecionado");
-            Earth3D_Cenomanian earth3D = new Earth3D_Cenomanian();
+            Cenomanian earth3D = new Cenomanian();
             try {
                 earth3D.start(primaryStage);
             } catch (Exception e) {
@@ -127,11 +125,11 @@ public class Selection extends Application {
             }
         });
 
-        // Configurando o período Plioceno
-        Image plioceneLogo = new Image("file:pliocene_logo.png");
-        ImageView plioceneView = new ImageView(plioceneLogo);
-        plioceneView.setFitHeight(100);
-        plioceneView.setFitWidth(100);
+        // Configurando o período Plioceno (Caminho da logo e o tamnho)
+//        Image plioceneLogo = new Image(getClass().getResourceAsStream("/resources/pliocene_logo.png"));
+//        ImageView plioceneView = new ImageView(plioceneLogo);
+//        plioceneView.setFitHeight(100);
+//        plioceneView.setFitWidth(100);
 
         Label plioceneTitle = new Label("Plioceno");
         plioceneTitle.setStyle("-fx-font-size: 25px; -fx-text-fill: white; -fx-font-family: Arial; -fx-font-weight: bold;");
@@ -139,35 +137,18 @@ public class Selection extends Application {
         Label plioceneDescription = new Label("blá blá blá");
         plioceneDescription.setStyle("-fx-font-size: 14px; -fx-text-fill: white;");
 
-        VBox plioceneInfo = new VBox(5, plioceneView, plioceneTitle, plioceneDescription);
+        // Organizar a imagem, título e descrição em um VBox (descomentar quando tiver imagem)
+        VBox plioceneInfo = new VBox(5, /*plioceneView,*/ plioceneTitle, plioceneDescription);
         plioceneInfo.setAlignment(Pos.CENTER);
 
-        Rectangle plioceneBackground = new Rectangle(320, 800);
+        Rectangle plioceneBackground = new Rectangle(320, 695);
         plioceneBackground.setFill(Color.GREEN);
 
         StackPane pliocenePane = new StackPane(plioceneBackground, plioceneInfo);
         pliocenePane.setOnMouseClicked(event -> {
-            System.out.println("Plioceno selecionado");
-            Earth3D_Pliocene earth3D = new Earth3D_Pliocene();
+            Pliocene earth3D = new Pliocene();
             try {
                 earth3D.start(primaryStage);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-        
-        String buttonStyle = "-fx-font-size: 14px; "
-                + "-fx-padding: 5 10; -fx-border-radius: 5; -fx-background-radius: 5;";
-        
-        // Adicionando o botão de Voltar
-        Button backButton = new Button("Voltar");
-        backButton.setStyle(buttonStyle);
-        backButton.setOnMouseExited(e -> backButton.setStyle(buttonStyle));
-        backButton.setOnAction(event -> {
-            // Retorna para a tela de login
-            LoginScreen loginScreen = new LoginScreen();
-            try {
-                loginScreen.start(primaryStage);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -179,8 +160,7 @@ public class Selection extends Application {
         hbox.setStyle("-fx-background-color: #000000;");
         
         // O layout principal é o VBox, contendo o HBox e o botão
-        VBox mainLayout = new VBox(10, hbox, backButton);
-        mainLayout.setAlignment(Pos.BOTTOM_LEFT);
+        VBox mainLayout = new VBox(10, hbox);
         mainLayout.setStyle("-fx-background-color: #000000; -fx-padding: 10;");
 
         // Ajustando o tamanho da tela
@@ -193,11 +173,5 @@ public class Selection extends Application {
         
         // Exibe a janela
         primaryStage.show();
-        
-//        primaryStage.setMaximized(true); // tela maximizada
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

@@ -1,6 +1,9 @@
+package terraanciaapp;
+
 import javafx.animation.RotateTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
@@ -25,7 +28,7 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class Earth3D_Pliocene extends Application {
+public class Jurassic_Cretaceous extends Application {
 
     private static final int WIDTH = 1366;
     private static final int HEIGHT = 768;
@@ -100,19 +103,54 @@ public class Earth3D_Pliocene extends Application {
             }
         });
         
+        
+        // Título da Interface selecionada
+        Text jurassicTitle = new Text("Jurássico-Cretáceo");
+        jurassicTitle.setStyle("-fx-font-size: 16px; -fx-fill: white;");  // Estilizando o texto
+        
+        // Pequenas informações do período
+        Text jurassicText = new Text("Blá Blá Blá");
+        jurassicText.setStyle("-fx-font-size: 12px; -fx-fill: white;");
+        
+        // Caixa com o título e o texto
+        VBox jurassicBox = new VBox(10);
+        jurassicBox.setPadding(new Insets(10));
+        
+        // Adiciona título e o texto ao VBox
+        jurassicBox.getChildren().addAll(jurassicTitle, jurassicText);
+        jurassicBox.setAlignment(Pos.CENTER_LEFT);
+        
+        
         // Criar a esfera da Terra
         Sphere earth = new Sphere(220);
 
         PhongMaterial earthMaterial = new PhongMaterial();
-        Image earthImage = new Image("file:earth_pliocene_texture.jpg"); // caminho da textura
+        Image earthImage = new Image(getClass().getResourceAsStream("/resources/earth_jcretaceous_texture.jpg")); // caminho da textura
         earthMaterial.setDiffuseMap(earthImage);
         earth.setMaterial(earthMaterial);
         
+        // Criar a esfera da lua
+        Sphere moon = new Sphere(55);
+        // Posicionando no espaço 3D em relação à Terra
+        moon.setTranslateX(-200);
+        moon.setTranslateY(100);
+        moon.setTranslateZ(-200);
+        
+        PhongMaterial moonMaterial = new PhongMaterial();
+        Image moonImage = new Image(getClass().getResourceAsStream("/resources/moon_texture.jpg")); // caminho da textura
+        moonMaterial.setDiffuseMap(moonImage);
+        moon.setMaterial(moonMaterial);
+        
         // Configuração da imagem de fundo (espaço)
-        Image backgroundImage = new Image("file:space_background.jpg");
-        BackgroundImage background = new BackgroundImage(backgroundImage,
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Image backgroundImage = new Image(getClass().getResourceAsStream("/resources/space_background.jpg"));
+        BackgroundImage background = new BackgroundImage
+        		(
+        		backgroundImage,
+                BackgroundRepeat.NO_REPEAT, 
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT, 
+                BackgroundSize.DEFAULT
+                );
 
         // Estilizando os botões inferiores
         String buttonStyle = "-fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 10; -fx-background-radius: 5;";
@@ -147,28 +185,69 @@ public class Earth3D_Pliocene extends Application {
         africa3D.setFill(Color.RED);
         // Posicionando no espaço 3D em relação à Terra
         africa3D.setTranslateX(50);
-        africa3D.setTranslateY(-20);
-        africa3D.setTranslateZ(-230);
+        africa3D.setTranslateY(-5);
+        africa3D.setTranslateZ(-225);
         // Inclinação para alinhar à superfície
-        africa3D.getTransforms().add(new Rotate(-20, Rotate.Y_AXIS));
+        africa3D.getTransforms().add(new Rotate(-5, Rotate.X_AXIS));
+        africa3D.getTransforms().add(new Rotate(-15, Rotate.Y_AXIS));
+        africa3D.getTransforms().add(new Rotate(-2, Rotate.Z_AXIS)); 
 
         Text america3D = new Text("América");
         america3D.setFill(Color.RED);
         // Posicionando no espaço 3D em relação à Terra
-        america3D.setTranslateX(-250);
-        america3D.setTranslateY(-20);
-        america3D.setTranslateZ(-10);
+        america3D.setTranslateX(-170);
+        america3D.setTranslateY(-50);
+        america3D.setTranslateZ(-150);
         // Inclinação para alinhar à superfície 
-        america3D.getTransforms().add(new Rotate(73, Rotate.Y_AXIS)); 
+        america3D.getTransforms().add(new Rotate(-15, Rotate.X_AXIS));
+        america3D.getTransforms().add(new Rotate(45, Rotate.Y_AXIS));
+        america3D.getTransforms().add(new Rotate(12, Rotate.Z_AXIS));
+        
+        Text europa3D = new Text("Europa");
+        europa3D.setFill(Color.RED);
+        // Posicionando no espaço 3D em relação à Terra
+        europa3D.setTranslateX(65);
+        europa3D.setTranslateY(-130);
+        europa3D.setTranslateZ(-180);
+        // Inclinação para alinhar à superfície 
+        europa3D.getTransforms().add(new Rotate(-35, Rotate.X_AXIS)); 
+        europa3D.getTransforms().add(new Rotate(-25, Rotate.Y_AXIS)); 
+        europa3D.getTransforms().add(new Rotate(-14, Rotate.Z_AXIS));
+        
+        Text asia3D = new Text("Ásia");
+        asia3D.setFill(Color.RED);
+        // Posicionando no espaço 3D em relação à Terra
+        asia3D.setTranslateX(200);
+        asia3D.setTranslateY(-110);
+        asia3D.setTranslateZ(30);
+        // Inclinação para alinhar à superfície 
+        asia3D.getTransforms().add(new Rotate(95, Rotate.X_AXIS)); 
+        asia3D.getTransforms().add(new Rotate(-110, Rotate.Y_AXIS)); 
+        asia3D.getTransforms().add(new Rotate(95, Rotate.Z_AXIS)); 
+        
+        Text oceania3D = new Text("Oceania");
+        oceania3D.setFill(Color.RED);
+        // Posicionando no espaço 3D em relação à Terra
+        oceania3D.setTranslateX(185);
+        oceania3D.setTranslateY(145);
+        oceania3D.setTranslateZ(-10);
+        // Inclinação para alinhar à superfície 
+        oceania3D.getTransforms().add(new Rotate(95, Rotate.X_AXIS)); 
+        oceania3D.getTransforms().add(new Rotate(-55, Rotate.Y_AXIS)); 
+        oceania3D.getTransforms().add(new Rotate(95, Rotate.Z_AXIS)); 
         
         // Agrupar a Terra e os textos em um único grupo para que os textos sigam a Terra
-        Group earthGroup = new Group(earth, africa3D, america3D);
+        Group earthGroup = new Group(earth, africa3D, america3D, europa3D, asia3D, oceania3D);
         
         // Layout principal usando BorderPane
         BorderPane root = new BorderPane();
         root.setCenter(earthGroup);
+        root.setRight(moon);
         root.setBottom(buttonBox2);
         root.setBackground(new Background(background));
+        
+        // Adiciona o VBox
+        root.setLeft(jurassicBox);
         
         // Adicionar o AnchorPane dos botões no topo
         root.setTop(anchorPane);
@@ -185,15 +264,18 @@ public class Earth3D_Pliocene extends Application {
         
      // Controles de zoom com o scroll do mouse
         scene.setOnScroll(event -> {
-            double zoomFactor = event.getDeltaY() > 0 ? 100 : -100;
+            double zoomFactor = event.getDeltaY() > 0 ? -100 : 100;
             double newTranslateZ = earthGroup.getTranslateZ() + zoomFactor;
+            double newTranslateZ2 = moon.getTranslateZ() + zoomFactor;
 
             // Limitar o zoom entre dois valores (ex: -500 e 500)
             if (newTranslateZ > -500 && newTranslateZ < 100) {
                 earthGroup.translateZProperty().set(newTranslateZ);
             }
+            if (newTranslateZ2 > -700 && newTranslateZ2 < -100) {
+                moon.translateZProperty().set(newTranslateZ2);
+            }
         });
-
 
         // Inicializa a rotação manual
         yRotate = new Rotate(0, Rotate.Y_AXIS);
@@ -232,14 +314,9 @@ public class Earth3D_Pliocene extends Application {
             }
         });
         
-        primaryStage.setTitle("Plioceno");
+        primaryStage.setTitle("Jurássico-Cretáceo");
         primaryStage.setScene(scene);
         primaryStage.show();
         
-//        primaryStage.setMaximized(true); // tela maximizada
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

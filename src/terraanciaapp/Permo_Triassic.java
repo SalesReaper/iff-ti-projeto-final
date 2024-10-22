@@ -1,6 +1,9 @@
+package terraanciaapp;
+
 import javafx.animation.RotateTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
@@ -25,7 +28,7 @@ import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class Earth3D_Cenomanian extends Application {
+public class Permo_Triassic extends Application {
 
     private static final int WIDTH = 1366;
     private static final int HEIGHT = 768;
@@ -100,19 +103,54 @@ public class Earth3D_Cenomanian extends Application {
             }
         });
         
+        
+        // Título da Interface selecionada
+        Text permoTitle = new Text("Permo-Triássico");
+        permoTitle.setStyle("-fx-font-size: 16px; -fx-fill: white;");  // Estilizando o texto
+        
+        // Pequenas informações do período
+        Text permoText = new Text("Blá Blá Blá");
+        permoText.setStyle("-fx-font-size: 12px; -fx-fill: white;");
+        
+        // Caixa com o título e o texto
+        VBox permoBox = new VBox(10);
+        permoBox.setPadding(new Insets(10));
+        
+        // Adiciona título e o texto ao VBox
+        permoBox.getChildren().addAll(permoTitle, permoText);
+        permoBox.setAlignment(Pos.CENTER_LEFT);
+        
+        
         // Criar a esfera da Terra
         Sphere earth = new Sphere(220);
 
         PhongMaterial earthMaterial = new PhongMaterial();
-        Image earthImage = new Image("file:earth_cenomanian_texture.jpg"); // caminho da textura
+        Image earthImage = new Image(getClass().getResourceAsStream("/resources/earth_ptriassic_texture.jpg")); // caminho da textura
         earthMaterial.setDiffuseMap(earthImage);
         earth.setMaterial(earthMaterial);
         
+        // Criar a esfera da lua
+        Sphere moon = new Sphere(55);
+        // Posicionando no espaço 3D em relação à Terra
+        moon.setTranslateX(-200);
+        moon.setTranslateY(100);
+        moon.setTranslateZ(-200);
+        
+        PhongMaterial moonMaterial = new PhongMaterial();
+        Image moonImage = new Image(getClass().getResourceAsStream("/resources/moon_texture.jpg")); // caminho da textura
+        moonMaterial.setDiffuseMap(moonImage);
+        moon.setMaterial(moonMaterial);
+                
         // Configuração da imagem de fundo (espaço)
-        Image backgroundImage = new Image("file:space_background.jpg");
-        BackgroundImage background = new BackgroundImage(backgroundImage,
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Image backgroundImage = new Image(getClass().getResourceAsStream("/resources/space_background.jpg"));
+        BackgroundImage background = new BackgroundImage
+        		(
+        		backgroundImage,
+                BackgroundRepeat.NO_REPEAT, 
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT, 
+                BackgroundSize.DEFAULT
+                );
 
         // Estilizando os botões inferiores
         String buttonStyle = "-fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 10; -fx-background-radius: 5;";
@@ -148,7 +186,7 @@ public class Earth3D_Cenomanian extends Application {
         // Posicionando no espaço 3D em relação à Terra
         africa3D.setTranslateX(50);
         africa3D.setTranslateY(90);
-        africa3D.setTranslateZ(-230);
+        africa3D.setTranslateZ(-210);
         // Inclinação para alinhar à superfície
         africa3D.getTransforms().add(new Rotate(20, Rotate.X_AXIS));
         africa3D.getTransforms().add(new Rotate(-20, Rotate.Y_AXIS));
@@ -163,20 +201,57 @@ public class Earth3D_Cenomanian extends Application {
         // Inclinação para alinhar à superfície 
         america3D.getTransforms().add(new Rotate(20, Rotate.Y_AXIS)); 
         
+        Text europa3D = new Text("Europa");
+        europa3D.setFill(Color.RED);
+        // Posicionando no espaço 3D em relação à Terra
+        europa3D.setTranslateX(65);
+        europa3D.setTranslateY(-60);
+        europa3D.setTranslateZ(-220);
+        // Inclinação para alinhar à superfície 
+        europa3D.getTransforms().add(new Rotate(-20, Rotate.X_AXIS)); 
+        europa3D.getTransforms().add(new Rotate(-25, Rotate.Y_AXIS)); 
+        europa3D.getTransforms().add(new Rotate(-8, Rotate.Z_AXIS));
+        
+        Text asia3D = new Text("Ásia");
+        asia3D.setFill(Color.RED);
+        // Posicionando no espaço 3D em relação à Terra
+        asia3D.setTranslateX(190);
+        asia3D.setTranslateY(-110);
+        asia3D.setTranslateZ(-80);
+        // Inclinação para alinhar à superfície 
+        asia3D.getTransforms().add(new Rotate(-50, Rotate.X_AXIS)); 
+        asia3D.getTransforms().add(new Rotate(-60, Rotate.Y_AXIS)); 
+        asia3D.getTransforms().add(new Rotate(-45, Rotate.Z_AXIS)); 
+        
+        Text oceania3D = new Text("Oceania");
+        oceania3D.setFill(Color.RED);
+        // Posicionando no espaço 3D em relação à Terra
+        oceania3D.setTranslateX(180);
+        oceania3D.setTranslateY(130);
+        oceania3D.setTranslateZ(80);
+        // Inclinação para alinhar à superfície 
+        oceania3D.getTransforms().add(new Rotate(-220, Rotate.X_AXIS)); 
+        oceania3D.getTransforms().add(new Rotate(-55, Rotate.Y_AXIS)); 
+        oceania3D.getTransforms().add(new Rotate(-215, Rotate.Z_AXIS)); 
+        
         // Agrupar a Terra e os textos em um único grupo para que os textos sigam a Terra
-        Group earthGroup = new Group(earth, africa3D, america3D);
+        Group earthGroup = new Group(earth, africa3D, america3D, europa3D, asia3D, oceania3D);
         
         // Layout principal usando BorderPane
         BorderPane root = new BorderPane();
         root.setCenter(earthGroup);
+        root.setRight(moon);
         root.setBottom(buttonBox2);
         root.setBackground(new Background(background));
+        
+        // Adiciona o VBox
+        root.setLeft(permoBox);
         
         // Adicionar o AnchorPane dos botões no topo
         root.setTop(anchorPane);
 
         // Configurando a câmera
-        Camera camera = new PerspectiveCamera();
+        Camera camera = new PerspectiveCamera();        
         Scene scene = new Scene(root, WIDTH, HEIGHT, true);
         scene.setFill(Color.BLACK);
         scene.setCamera(camera);
@@ -187,15 +262,18 @@ public class Earth3D_Cenomanian extends Application {
         
      // Controles de zoom com o scroll do mouse
         scene.setOnScroll(event -> {
-            double zoomFactor = event.getDeltaY() > 0 ? 100 : -100;
+            double zoomFactor = event.getDeltaY() > 0 ? -100 : 100;
             double newTranslateZ = earthGroup.getTranslateZ() + zoomFactor;
+            double newTranslateZ2 = moon.getTranslateZ() + zoomFactor;
 
             // Limitar o zoom entre dois valores (ex: -500 e 500)
             if (newTranslateZ > -500 && newTranslateZ < 100) {
                 earthGroup.translateZProperty().set(newTranslateZ);
             }
+            if (newTranslateZ2 > -700 && newTranslateZ2 < -100) {
+                moon.translateZProperty().set(newTranslateZ2);
+            }
         });
-
 
         // Inicializa a rotação manual
         yRotate = new Rotate(0, Rotate.Y_AXIS);
@@ -234,14 +312,9 @@ public class Earth3D_Cenomanian extends Application {
             }
         });
         
-        primaryStage.setTitle("Cenomaniano");
+        primaryStage.setTitle("Permo-Triássico");
         primaryStage.setScene(scene);
-        primaryStage.show();
+        primaryStage.show();        
         
-//        primaryStage.setMaximized(true); // tela maximizada		
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

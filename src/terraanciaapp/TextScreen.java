@@ -1,3 +1,5 @@
+package terraanciaapp;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -94,6 +96,7 @@ public class TextScreen extends Application {
         stage.setTitle("Janela de Textos");
         stage.setScene(scene);
         stage.show();
+        
 //        stage.setMaximized(true); // tela maximizada
     }
 
@@ -122,9 +125,5 @@ public class TextScreen extends Application {
             double scrollPosition = (targetText.getBoundsInParent().getMinY()) / (textContainer.getHeight() - scrollPane.getHeight());
             scrollPane.setVvalue(scrollPosition);  // Ajusta a posição do ScrollPane
         }
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }
