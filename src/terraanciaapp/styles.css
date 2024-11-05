@@ -1,0 +1,23 @@
+/* Estilo das repartições */
+.option-pane {
+    -fx-padding: 20;
+    -fx-border-radius: 15;
+}
+
+/* Estilo do título */
+.option-title {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.root {
+    -fx-background-color: #000000; /* Fundo da janela */
+}
+
+.label {
+    -fx-text-fill: #00CED1; /* Cor dos textos */
+}
+
+.rectangle {
+    -fx-opacity: 0.8; /* Opacidade do fundo dos períodos */
+}

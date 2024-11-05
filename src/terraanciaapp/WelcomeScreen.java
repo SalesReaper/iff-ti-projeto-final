@@ -5,36 +5,22 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class WelcomeScreen extends Application {
 
     public void start(Stage primaryStage) {
-        // Texto de saudação
-        Text greetingText = new Text("Bem-vindo à Terra Anciã!");
-        greetingText.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-        greetingText.setFill(Color.WHITE); // Cor de fundo da fonte
+        // Configurando os textos
+        Label welcomeLabel = new Label("Bem-vindo ao Terra Anciã!");
+        Label messageLabel = new Label("Explore como era dividido o planeta de eras em eras.");
+        Label footerLabel = new Label("Rayan & Jhulya");
 
-        // Resumo do programa
-        Text summaryText = new Text("Este programa permite explorar os períodos geológicos da Terra e visualizar a distribuição dos continentes ao longo do tempo.");
-        summaryText.setStyle("-fx-font-size: 16px;");
-        summaryText.setFill(Color.WHITE); // Cor de fundo da fonte
-
-        // Botão para começar
-        Button startButton = new Button("Começar Exploração");
-        startButton.setStyle("-fx-font-size: 16px;");
-        startButton.setOnAction(event -> {
+        // Adicionando botão "Entrar"
+        Button enterButton = new Button("Começar Exploração");
+        enterButton.setOnAction(event -> {
             // Ir para a próxima interface
             Selection selection = new Selection();
             try {
@@ -43,49 +29,39 @@ public class WelcomeScreen extends Application {
                 e.printStackTrace();
             }
         });
+        
+        // Adicionando estilos CSS
+        welcomeLabel.getStyleClass().add("welcome-text");
+        messageLabel.getStyleClass().add("message-text");
+        footerLabel.getStyleClass().add("footer-text");
+        enterButton.getStyleClass().add("enter-button"); // Estilo para o botão
 
-        // Faixa superior simulando uma logo 
-        Text logoText = new Text("Terra Anciã");
-        logoText.setFont(new Font("Arial", 24));
-        logoText.setFill(Color.WHITE);
+        // Layout central
+        VBox centralLayout = new VBox(20, welcomeLabel, messageLabel, enterButton);
+        centralLayout.setAlignment(Pos.CENTER);  // Alinhado no centro da tela
+        centralLayout.setPadding(new Insets(50));
+        
+        // Layout do rodapé
+        VBox footerLayout = new VBox(footerLabel);
+        footerLayout.setAlignment(Pos.BOTTOM_LEFT);  // Alinha o rodapé no canto inferior esquerdo
+        
+        // Layout principal
+        BorderPane mainLayout = new BorderPane();
+        mainLayout.setCenter(centralLayout);         // Textos e botão centrais no meio
+        mainLayout.setBottom(footerLayout);          // Rodapé no fundo
 
-        VBox topBox = new VBox(logoText);
-        topBox.setAlignment(Pos.CENTER_LEFT);
-        topBox.setStyle("-fx-background-color: #1C1C1C; -fx-padding: 15 30;");
+        // Adicionando imagem de fundo via Java
+        mainLayout.setStyle("-fx-background-image: url('" + getClass().getResource("/resources/galaxy-night-panorama.jpg").toExternalForm() + "');"
+                + "-fx-background-size: cover;"
+                + "-fx-background-position: center;"
+                + "-fx-background-repeat: no-repeat;");
 
-        // Fundo da tela
-        Image backgroundImage = new Image(getClass().getResourceAsStream("/resources/background_welcome.jpg")); // caminho da imagem de fundo
-        BackgroundImage background = new BackgroundImage
-        		(
-        		backgroundImage, 
-        		BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT, 
-                BackgroundPosition.CENTER,
-                	new BackgroundSize
-                		(
-                		BackgroundSize.AUTO, 
-                		BackgroundSize.AUTO, 
-                		false, false, true, true
-                		)
-                );
+        // Cena
+        Scene scene = new Scene(mainLayout, 1366, 768);
+        scene.getStylesheets().add(getClass().getResource("/terraanciaapp/style.css").toExternalForm());
 
-        BorderPane root = new BorderPane();
-        root.setTop(topBox);
-        root.setBackground(new Background(background));
-
-        // Layout central para os textos e o botão
-        VBox vbox = new VBox(20, greetingText, summaryText, startButton);
-        vbox.setAlignment(Pos.CENTER);
-        vbox.setPadding(new Insets(50));
-        root.setCenter(vbox); // Adiciona o VBox no centro do BorderPane
-
-        // Tamanho da tela
-        primaryStage.setWidth(1366);
-        primaryStage.setHeight(768);
-
-        // Definindo a cena
-        Scene scene = new Scene(root);
-        primaryStage.setTitle("Terra Anciã");
+        // Configurando o palco
+        primaryStage.setTitle("Bem-vindo");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

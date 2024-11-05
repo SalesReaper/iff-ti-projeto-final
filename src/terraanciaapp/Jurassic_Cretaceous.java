@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -39,78 +38,39 @@ public class Jurassic_Cretaceous extends Application {
     private Rotate yRotate;
 
     public void start(Stage primaryStage) {
-        // Caixa de botões no canto superior esquerdo
-        VBox buttonBox1 = new VBox(10);
-        buttonBox1.setPadding(new Insets(10));
         
-        Text sText = new Text("Sobre os Períodos");
-        sText.setStyle("-fx-font-size: 16px; -fx-fill: white;");  // Estilizando o texto
-        
-        Button ptriassicButton = new Button("Permo-Triássico");
-        Button jcretaceousButton = new Button("Jurássico-Cretáceo");
-        Button cenomanianButton = new Button("Cenomaniano");
-        Button plioceneButton = new Button("Plioceno");
+    	// Título da Interface selecionada
+    	Text jurassicTitle = new Text("Jurássico-Cretáceo");
+    	jurassicTitle.setStyle(
+    	    "-fx-font-family: 'Orbitron', sans-serif;" +
+    	    "-fx-font-size: 14px;" +
+    	    "-fx-fill: white;" +
+    	    "-fx-font-weight: bold;"
+    	);
 
-        // Adicionar título e botões ao VBox
-        buttonBox1.getChildren().addAll(sText, ptriassicButton, jcretaceousButton, cenomanianButton, plioceneButton);
-
-        // Posicionar os botões no canto superior esquerdo
-        AnchorPane anchorPane = new AnchorPane(buttonBox1);
-        AnchorPane.setTopAnchor(buttonBox1, 10.0);  // Ajuste para dar espaço no topo
-        AnchorPane.setLeftAnchor(buttonBox1, 10.0);
-        
-        // Ação ao clicar no botão Permo-Triássico
-        ptriassicButton.setOnAction(event -> {
-            TextScreen textScreen = new TextScreen();
-            try {
-                textScreen.start(primaryStage);
-                textScreen.scrollToText("Permo-Triássico");  // Rola até o Permo-Triássico
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-        
-        // Ação ao clicar no botão Jurássico-Cretáceo
-        jcretaceousButton.setOnAction(event -> {
-            TextScreen textScreen = new TextScreen();
-            try {
-                textScreen.start(primaryStage);
-                textScreen.scrollToText("Jurássico-Cretáceo");  // Rola até o Jurássico-Cretáceo
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-        
-        // Ação ao clicar no botão Cenomaniano
-        cenomanianButton.setOnAction(event -> {
-            TextScreen textScreen = new TextScreen();
-            try {
-                textScreen.start(primaryStage);
-                textScreen.scrollToText("Cenomaniano");  // Rola até o Cenomaniano
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-        
-        // Ação ao clicar no botão Plioceno
-        plioceneButton.setOnAction(event -> {
-            TextScreen textScreen = new TextScreen();
-            try {
-                textScreen.start(primaryStage);
-                textScreen.scrollToText("Plioceno");  // Rola até o Cambriano
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-        
-        
-        // Título da Interface selecionada
-        Text jurassicTitle = new Text("Jurássico-Cretáceo");
-        jurassicTitle.setStyle("-fx-font-size: 16px; -fx-fill: white;");  // Estilizando o texto
-        
-        // Pequenas informações do período
-        Text jurassicText = new Text("Blá Blá Blá");
-        jurassicText.setStyle("-fx-font-size: 12px; -fx-fill: white;");
+    	// Informações do período
+    	Text jurassicText = new Text(
+    	    "O Jurássico-Cretáceo é conhecido "
+    	    + "\n"
+    	    + "pela dominação dos dinossauros, "
+    	    + "\n"
+    	    + "com uma grande diversidade de "
+    	    + "\n"
+    	    + "espécies prosperando em várias "
+    	    + "\n"
+    	    + "partes do mundo. O clima era quente, "
+    	    + "\n"
+    	    + "e os níveis de oxigênio permitiam "
+    	    + "\n"
+    	    + "o crescimento de florestas densas."
+    	);
+    	jurassicText.setStyle(
+    	    "-fx-font-family: 'Orbitron', sans-serif;" +
+    	    "-fx-font-size: 12px;" +
+    	    "-fx-fill: white;" +
+    	    "-fx-font-weight: bold;" +
+    	    "-fx-padding: 10px 20px;"
+    	);
         
         // Caixa com o título e o texto
         VBox jurassicBox = new VBox(10);
@@ -118,7 +78,7 @@ public class Jurassic_Cretaceous extends Application {
         
         // Adiciona título e o texto ao VBox
         jurassicBox.getChildren().addAll(jurassicTitle, jurassicText);
-        jurassicBox.setAlignment(Pos.CENTER_LEFT);
+        jurassicBox.setAlignment(Pos.TOP_LEFT);
         
         
         // Criar a esfera da Terra
@@ -133,7 +93,7 @@ public class Jurassic_Cretaceous extends Application {
         Sphere moon = new Sphere(55);
         // Posicionando no espaço 3D em relação à Terra
         moon.setTranslateX(-200);
-        moon.setTranslateY(100);
+        moon.setTranslateY(200);
         moon.setTranslateZ(-200);
         
         PhongMaterial moonMaterial = new PhongMaterial();
@@ -152,14 +112,18 @@ public class Jurassic_Cretaceous extends Application {
                 BackgroundSize.DEFAULT
                 );
 
-        // Estilizando os botões inferiores
-        String buttonStyle = "-fx-font-size: 14px; -fx-padding: 10 20; -fx-border-radius: 10; -fx-background-radius: 5;";
-        String hoverStyle = "-fx-background-color: #45a049;";
-
         Button backButton = new Button("Voltar");
-        backButton.setStyle(buttonStyle);
-        backButton.setOnMouseEntered(e -> backButton.setStyle(hoverStyle));
-        backButton.setOnMouseExited(e -> backButton.setStyle(buttonStyle));
+        backButton.setStyle(
+        	"-fx-background-color: #778899;" +
+        	"-fx-text-fill: white;" +
+        	"-fx-font-family: 'Orbitron', sans-serif;" +
+        	"-fx-font-size: 16px;" +
+        	"-fx-font-weight: bold;" +
+        	"-fx-padding: 10px 20px;" +
+        	"-fx-background-radius: 10px;" +
+        	"-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 5, 0.3, 2, 2);" +
+        	"-fx-cursor: hand;"
+        );
         backButton.setOnAction(event -> {
             // Volta para a tela anterior
             Selection selectionScreen = new Selection();
@@ -171,10 +135,30 @@ public class Jurassic_Cretaceous extends Application {
         });
 
         Button autoRotateButton = new Button("Rotação Automática");
-        Button manualRotateButton = new Button("Rotação Manual");
+        autoRotateButton.setStyle(
+            "-fx-background-color: #778899;" +
+            "-fx-text-fill: white;" +
+            "-fx-font-family: 'Orbitron', sans-serif;" +
+            "-fx-font-size: 16px;" +
+            "-fx-font-weight: bold;" +
+            "-fx-padding: 10px 20px;" +
+            "-fx-background-radius: 10px;" +
+            "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 5, 0.3, 2, 2);" +
+            "-fx-cursor: hand;"
+        );
 
-        autoRotateButton.setStyle(buttonStyle);
-        manualRotateButton.setStyle(buttonStyle);
+        Button manualRotateButton = new Button("Rotação Manual");
+        manualRotateButton.setStyle(
+        	"-fx-background-color: #778899;" +
+        	"-fx-text-fill: white;" +
+        	"-fx-font-family: 'Orbitron', sans-serif;" +
+        	"-fx-font-size: 16px;" +
+        	"-fx-font-weight: bold;" +
+        	"-fx-padding: 10px 20px;" +
+        	"-fx-background-radius: 10px;" +
+        	"-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 5, 0.3, 2, 2);" +
+        	"-fx-cursor: hand;"
+        );
 
         // Caixa de botões inferior
         HBox buttonBox2 = new HBox(10, autoRotateButton, manualRotateButton, backButton);
@@ -182,7 +166,12 @@ public class Jurassic_Cretaceous extends Application {
 
         // Cria textos para os continentes
         Text africa3D = new Text("África");
-        africa3D.setFill(Color.RED);
+        africa3D.setStyle(
+        	    "-fx-font-size: 20px;" + 
+        	    "-fx-font-weight: bold;" + 
+        	    "-fx-fill: white;" + 
+        	    "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0.5, 2, 2);"
+        	);
         // Posicionando no espaço 3D em relação à Terra
         africa3D.setTranslateX(50);
         africa3D.setTranslateY(-5);
@@ -193,7 +182,12 @@ public class Jurassic_Cretaceous extends Application {
         africa3D.getTransforms().add(new Rotate(-2, Rotate.Z_AXIS)); 
 
         Text america3D = new Text("América");
-        america3D.setFill(Color.RED);
+        america3D.setStyle(
+        	    "-fx-font-size: 20px;" + 
+        	    "-fx-font-weight: bold;" + 
+        	    "-fx-fill: white;" + 
+        	    "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0.5, 2, 2);"
+        	);
         // Posicionando no espaço 3D em relação à Terra
         america3D.setTranslateX(-170);
         america3D.setTranslateY(-50);
@@ -204,7 +198,12 @@ public class Jurassic_Cretaceous extends Application {
         america3D.getTransforms().add(new Rotate(12, Rotate.Z_AXIS));
         
         Text europa3D = new Text("Europa");
-        europa3D.setFill(Color.RED);
+        europa3D.setStyle(
+        	    "-fx-font-size: 20px;" + 
+        	    "-fx-font-weight: bold;" + 
+        	    "-fx-fill: white;" + 
+        	    "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0.5, 2, 2);"
+        	);
         // Posicionando no espaço 3D em relação à Terra
         europa3D.setTranslateX(65);
         europa3D.setTranslateY(-130);
@@ -215,7 +214,12 @@ public class Jurassic_Cretaceous extends Application {
         europa3D.getTransforms().add(new Rotate(-14, Rotate.Z_AXIS));
         
         Text asia3D = new Text("Ásia");
-        asia3D.setFill(Color.RED);
+        asia3D.setStyle(
+        	    "-fx-font-size: 20px;" + 
+        	    "-fx-font-weight: bold;" + 
+        	    "-fx-fill: white;" + 
+        	    "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0.5, 2, 2);"
+        	);
         // Posicionando no espaço 3D em relação à Terra
         asia3D.setTranslateX(200);
         asia3D.setTranslateY(-110);
@@ -226,7 +230,12 @@ public class Jurassic_Cretaceous extends Application {
         asia3D.getTransforms().add(new Rotate(95, Rotate.Z_AXIS)); 
         
         Text oceania3D = new Text("Oceania");
-        oceania3D.setFill(Color.RED);
+        oceania3D.setStyle(
+        	    "-fx-font-size: 20px;" + 
+        	    "-fx-font-weight: bold;" + 
+        	    "-fx-fill: white;" + 
+        	    "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 4, 0.5, 2, 2);"
+        	);
         // Posicionando no espaço 3D em relação à Terra
         oceania3D.setTranslateX(185);
         oceania3D.setTranslateY(145);
@@ -249,9 +258,6 @@ public class Jurassic_Cretaceous extends Application {
         // Adiciona o VBox
         root.setLeft(jurassicBox);
         
-        // Adicionar o AnchorPane dos botões no topo
-        root.setTop(anchorPane);
-
         // Configurando a câmera
         Camera camera = new PerspectiveCamera();
         Scene scene = new Scene(root, WIDTH, HEIGHT, true);
@@ -296,7 +302,7 @@ public class Jurassic_Cretaceous extends Application {
         // Ação do botão de rotação automática
         autoRotateButton.setOnAction(event -> {
             if (!isAutomaticRotation) {
-                rotateTransition = new RotateTransition(Duration.seconds(90), earthGroup);
+                rotateTransition = new RotateTransition(Duration.seconds(200), earthGroup);
                 rotateTransition.setAxis(Rotate.Y_AXIS);
                 rotateTransition.setByAngle(3600);
                 rotateTransition.setCycleCount(RotateTransition.INDEFINITE);
